@@ -18,6 +18,6 @@ services:
       - key: OPENAI_MODEL
         value: gpt-5-mini
       - key: ALLOWED_ORIGINS
-        value: "*"
+        value: https://leejuran-workout-ai-assistant-front.vercel.app
       - key: PYTHON_VERSION
         value: 3.12.10
