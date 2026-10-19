@@ -71,6 +71,19 @@ python3 -m http.server 5500
 
 Render 무료 인스턴스는 비활성 상태 후 슬립될 수 있어 첫 요청에 지연이 발생할 수 있습니다.
 
+## 제출 스크린샷
+
+### 데이터 요약이 반영된 AI 채팅
+![운동 데이터 요약과 사용자 질문, AI 답변](./screenshots/01-chat-summary.png)
+
+### 운동 기록 추가 (CRUD)
+![운동 기록 추가 후 갱신된 요약과 목록](./screenshots/02-data-crud.png)
+
+캡처 후 제출 확인용 임시 기록은 삭제해 Firestore의 기존 데이터 상태로 복원했습니다.
+
+### 저장된 대화 불러오기
+![대화 목록에서 이전 대화를 선택해 불러온 화면](./screenshots/03-conversation-history.png)
+
 ## 남은 TODO
 - Firestore 보안 규칙 설정 (현재 서버 SDK만 접근한다고 가정)
 - (선택) 대화 목록에 검색/페이지네이션 추가
