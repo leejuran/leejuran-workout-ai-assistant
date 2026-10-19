@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -5,11 +7,18 @@ from app.routers import chat, conversations, data
 
 app = FastAPI(title="운동기록 AI 비서 API")
 
-# Vercel 프론트엔드 도메인으로 교체하세요 (배포 후)
+allowed_origins = [
+    origin.strip()
+    for origin in os.environ.get(
+        "ALLOWED_ORIGINS",
+        "http://localhost:5500,http://127.0.0.1:5500",
+    ).split(",")
+    if origin.strip()
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # TODO: 배포 시 ["https://your-app.vercel.app"] 로 제한 권장
-    allow_credentials=True,
+    allow_origins=allowed_origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )

@@ -22,7 +22,7 @@ cd backend
 pip install -r requirements.txt
 cp .env.example .env   # 값 채우기 (Firestore 서비스 계정 키, API 키와 Base URL)
 python3 seed_firestore.py   # 생성한 시드 데이터를 Firestore에 업로드
-uvicorn app.main:app --reload
+uvicorn app.main:app --reload --env-file .env
 ```
 - API 문서: http://localhost:8000/docs
 - OpenAI API를 직접 사용할 때는 `OPENAI_BASE_URL`을 비워 두고, Codyssey 공개 API를 사용할 때는 Codyssey API 콘솔 문서 탭의 Base URL과 `/v1/models`에서 확인한 지원 모델명을 `.env`에 설정합니다.
@@ -59,11 +59,11 @@ python3 -m http.server 5500
 ```
 
 ## 5. 배포
-- 백엔드 → Render (Web Service, `uvicorn app.main:app --host 0.0.0.0 --port $PORT`)
-  - 환경변수: `GOOGLE_APPLICATION_CREDENTIALS_JSON`(서비스 계정 JSON 문자열), `OPENAI_API_KEY`, `OPENAI_BASE_URL`(호환 API 사용 시), `OPENAI_MODEL`
-- 프론트엔드 → Vercel (정적 사이트, `frontend/` 를 루트로 지정)
-  - 배포 후 `config.js`의 `API_BASE_URL`을 Render 백엔드 URL로 교체
-- 백엔드 `app/main.py`의 CORS `allow_origins`를 Vercel 도메인으로 제한 권장
+- GitHub 저장소의 `render.yaml`을 Render Blueprint로 배포합니다. `GOOGLE_APPLICATION_CREDENTIALS_JSON`에는 Firebase 서비스 계정 JSON 전체를 비밀 환경변수로 입력하고, `OPENAI_API_KEY`에는 Codyssey 공개 API 키를 입력합니다.
+- Render 배포 후 `https://<render-service>.onrender.com` 형태의 백엔드 URL을 확인하고 `/docs`에서 Swagger UI를 검증합니다.
+- Vercel에서 GitHub 저장소를 가져오고 Root Directory를 `frontend`로 지정해 정적 사이트로 배포합니다.
+- 배포된 Render URL을 `frontend/config.js`의 `API_BASE_URL`에 반영해 커밋/푸시하고 Vercel을 재배포합니다.
+- 프론트엔드 배포 주소 확인 후 Render의 `ALLOWED_ORIGINS`를 해당 Vercel 도메인으로 변경합니다. 초기 설정은 CORS 테스트를 위해 `*`로 되어 있습니다.
 
 ## 남은 TODO
 - Firestore 보안 규칙 설정 (현재 서버 SDK만 접근한다고 가정)
