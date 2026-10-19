@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>운동기록 AI 비서</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="app">
+  <header class="app-header">
+    <h1>운동기록 AI 비서</h1>
+    <p class="subtitle">내 운동 패턴을 아는 AI 코치</p>
+  </header>
+
+  <div class="layout">
+    <!-- 좌측: 데이터 관리 -->
+    <section class="panel" id="data-panel">
+      <h2>운동 기록</h2>
+
+      <form id="record-form" class="record-form">
+        <input type="date" id="input-date" required />
+        <input type="number" id="input-value" placeholder="운동 시간(분)" required min="1" />
+        <input type="text" id="input-memo" placeholder="메모 (선택)" />
+        <button type="submit" id="submit-btn">추가</button>
+      </form>
+
+      <div class="summary-box" id="summary-box">
+        <p>요약을 불러오는 중...</p>
+      </div>
+
+      <ul class="record-list" id="record-list"></ul>
+    </section>
+
+    <!-- 우측: 챗봇 -->
+    <section class="panel chat-panel">
+      <div class="chat-header">
+        <h2>AI 코치와 대화</h2>
+        <div class="chat-controls">
+          <select id="conversation-select"></select>
+          <button id="new-chat-btn">새 대화</button>
+          <button id="delete-chat-btn">삭제</button>
+        </div>
+      </div>
+
+      <div class="chat-messages" id="chat-messages"></div>
+
+      <form id="chat-form" class="chat-form">
+        <input type="text" id="chat-input" placeholder="오늘 컨디션이나 운동 계획을 물어보세요" autocomplete="off" />
+        <button type="submit">전송</button>
+      </form>
+    </section>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+backend/.env
+backend/.env.*
+!backend/.env.example
+backend/serviceAccountKey.json
+backend/*service-account*.json
+backend/*firebase-adminsdk*.json
+backend/.venv/
+backend/.pytest_cache/
+**/__pycache__/
