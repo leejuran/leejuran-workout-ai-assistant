@@ -61,8 +61,7 @@ python3 -m http.server 5500
 ## 5. 배포
 - GitHub 저장소의 `render.yaml`을 Render Blueprint로 배포합니다. `GOOGLE_APPLICATION_CREDENTIALS_JSON`에는 Firebase 서비스 계정 JSON 전체를 비밀 환경변수로 입력하고, `OPENAI_API_KEY`에는 Codyssey 공개 API 키를 입력합니다.
 - Render 배포 후 `https://<render-service>.onrender.com` 형태의 백엔드 URL을 확인하고 `/docs`에서 Swagger UI를 검증합니다.
-- Vercel에서 GitHub 저장소를 가져오고 Root Directory를 `frontend`로 지정해 정적 사이트로 배포합니다.
-- 배포된 Render URL을 `frontend/config.js`의 `API_BASE_URL`에 반영해 커밋/푸시하고 Vercel을 재배포합니다.
+- Vercel에서 GitHub 저장소를 가져오고 Root Directory를 `frontend`로 지정해 정적 사이트로 배포합니다. 현재 `frontend/config.js`의 API URL은 Render 백엔드 주소를 사용합니다.
 - 프론트엔드 배포 주소 확인 후 Render의 `ALLOWED_ORIGINS`를 해당 Vercel 도메인으로 변경합니다. 초기 설정은 CORS 테스트를 위해 `*`로 되어 있습니다.
 
 ## 남은 TODO
